@@ -1,13 +1,18 @@
 package com.ecommerceProjects.ecom.controller;
 
 import com.ecommerceProjects.ecom.dto.AuthenticationRequest;
+import com.ecommerceProjects.ecom.dto.RegisterRequest;
+import com.ecommerceProjects.ecom.dto.UserDto;
 import com.ecommerceProjects.ecom.entity.User;
 import com.ecommerceProjects.ecom.repository.UserRepository;
+import com.ecommerceProjects.ecom.services.auth.AuthService;
 import com.ecommerceProjects.ecom.utils.JwtUtil;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +40,8 @@ public class AuthController {
     public final String TOKEN_PREFIX = "Bearer ";
     public final String HEADER_STRING = "Authorization";
     
+    private final AuthService authService;
+
     @PostMapping("/authenticate")
     public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws IOException, JSONException {
         try{
@@ -49,12 +56,22 @@ public class AuthController {
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
         
         if(optionalUser.isPresent()){
-            response.getWriter().write(new JSONPObject()
+            response.getWriter().write(new JSONObject()
                     .put("userId", optionalUser.get().getId())
                     .put("role", optionalUser.get().getRole())
                     .toString()
             );
             response.addHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
         }
+    }
+    
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest){
+        if(authService.hasUserWithEmail(registerRequest.getEmail())){
+            return new ResponseEntity<>("User already exists", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        UserDto userDto = authService.createUser(registerRequest);
+        return  new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 }
