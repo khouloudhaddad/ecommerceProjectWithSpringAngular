@@ -1,4 +1,4 @@
-package com.ecommerceProjects.ecom.entity;
+package com.ecommerceProjects.ecom.enums;
 
 public enum UserRole {
 
