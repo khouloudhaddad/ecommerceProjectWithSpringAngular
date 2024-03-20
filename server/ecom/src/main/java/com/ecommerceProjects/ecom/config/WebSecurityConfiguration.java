@@ -25,14 +25,19 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request-> request
-                    .requestMatchers("/authenticate", "/register", "/order/**").permitAll()
-                    .requestMatchers("/api/**").permitAll()
-                )
-                .sessionManagement(smc -> smc
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                .csrf()
+                .disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/authenticate", "/register", "/order/**")
+                .permitAll()
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/api/**")
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

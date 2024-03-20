@@ -17,7 +17,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    public static final String SECTRET= "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcxMDgwODAyMCwiaWF0IjoxNzEwODA4MDIwfQ.xPJ2fO6zUGW9Syri0HP908K3k1MAGE8orQkPbK7w0yo";
+    public static final String SECTRET= "3iWJ8yFRTb7fL1kBRzfXiNv0tuEl3StIDBZFvNd7sMseIs1HjIjZ3KaI8VgW5Ihe1P7moL5pmsYQFtwmWWzuh5TRaY";
     
     public String generateToken(String userName){
         Map<String, Object> claims = new HashMap<>();

@@ -21,10 +21,15 @@ public class SimpleCorsFilter implements Filter {
     
     public SimpleCorsFilter(){
     }
-    
+
+
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException
-    {
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig);
+    }
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         Map<String, String> map = new HashMap<>();
@@ -33,16 +38,17 @@ public class SimpleCorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods","POST, GET, PUT, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "*");
-        
+
         if("OPTIONS".equalsIgnoreCase(request.getMethod())){
             response.setStatus(HttpServletResponse.SC_OK);
         }else{
             chain.doFilter(req, res);
         }
     }
-    
+
     @Override
-    public void init(FilterConfig filterConfig){
+    public void destroy() {
+        Filter.super.destroy();
     }
     
 }

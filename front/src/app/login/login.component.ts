@@ -35,14 +35,13 @@ export class LoginComponent implements OnInit{
     const username = this.loginForm.get('email')!.value;
     const password = this.loginForm.get('password')!.value;
 
-    this.authService.login(username, password.subscribe(
+    this.authService.login(username, password).subscribe(
         (res: any) => {
           this.snackBar.open("User successfully logged in.", 'Ok', { duration: 5000 })
         },
         (error: any) => {
           this.snackBar.open("Bad credentials", 'ERROR', { duration: 5000})
         }
-      )
     )
   }
 }
