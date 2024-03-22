@@ -19,12 +19,20 @@ public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     
+<<<<<<< HEAD
     public ProductDto createProduct(ProductDto productDto) throws IOException
     {
         Product product = new Product();
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
+=======
+    public ProductDto createProduct(ProductDto productDto) throws IOException {
+        Product product = new Product();
+        product.setName(product.getName());
+        product.setDescription(product.getDescription());
+        product.setPrice(product.getPrice());
+>>>>>>> 260517517e59aa450fddc00a958890adf78a607e
         product.setImg(productDto.getImg().getBytes());
 
         Category category = categoryRepository.findById(productDto.getCategoryId()).orElseThrow();
@@ -34,8 +42,12 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(product).getDto();
     }
     
+<<<<<<< HEAD
     public List<ProductDto> getAllProducts()
     {
+=======
+    public List<ProductDto> getAllProducts(){
+>>>>>>> 260517517e59aa450fddc00a958890adf78a607e
         List<Product> products = productRepository.findAll();
         return products.stream().map(Product::getDto).collect(Collectors.toList());
     }

@@ -14,18 +14,30 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminProductController {
+<<<<<<< HEAD
     private final ProductService productService;
     
     @PostMapping("/product")
     public ResponseEntity<ProductDto> createProduct(@ModelAttribute ProductDto productDto) throws IOException 
     {
+=======
+
+    private final ProductService productService;
+    
+    @PostMapping("/product")
+    public ResponseEntity<ProductDto> createProduct(@ModelAttribute ProductDto productDto) throws IOException {
+>>>>>>> 260517517e59aa450fddc00a958890adf78a607e
         ProductDto productDto1 = productService.createProduct(productDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(productDto1);
     }
     
     @GetMapping("/products")
+<<<<<<< HEAD
     public ResponseEntity<List<ProductDto>> getAllProducts()
     {
+=======
+    public ResponseEntity<List<ProductDto>> getAllProducts(){
+>>>>>>> 260517517e59aa450fddc00a958890adf78a607e
         List<ProductDto> productDtos = productService.getAllProducts();
         return ResponseEntity.ok(productDtos);
     }
