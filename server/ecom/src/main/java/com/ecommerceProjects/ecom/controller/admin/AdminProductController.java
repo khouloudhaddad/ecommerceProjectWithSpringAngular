@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminProductController {
 <<<<<<< HEAD
+<<<<<<< HEAD
     private final ProductService productService;
     
     @PostMapping("/product")
@@ -42,3 +43,5 @@ public class AdminProductController {
         return ResponseEntity.ok(productDtos);
     }
 }
+=======
+>>>>>>> e4efdb51baa5b15b770e8050338f78fcb2dabf16

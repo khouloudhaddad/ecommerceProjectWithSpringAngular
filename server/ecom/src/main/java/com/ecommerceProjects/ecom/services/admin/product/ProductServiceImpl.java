@@ -20,6 +20,7 @@ public class ProductServiceImpl implements ProductService{
     private final CategoryRepository categoryRepository;
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     public ProductDto createProduct(ProductDto productDto) throws IOException
     {
         Product product = new Product();
@@ -52,3 +53,6 @@ public class ProductServiceImpl implements ProductService{
         return products.stream().map(Product::getDto).collect(Collectors.toList());
     }
 }
+=======
+
+>>>>>>> e4efdb51baa5b15b770e8050338f78fcb2dabf16

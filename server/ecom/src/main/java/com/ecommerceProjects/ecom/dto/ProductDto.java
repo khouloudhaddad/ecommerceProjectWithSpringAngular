@@ -1,6 +1,7 @@
 package com.ecommerceProjects.ecom.dto;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 260517517e59aa450fddc00a958890adf78a607e
@@ -28,3 +29,6 @@ public class ProductDto {
 >>>>>>> 260517517e59aa450fddc00a958890adf78a607e
     private MultipartFile img;
 }
+=======
+
+>>>>>>> e4efdb51baa5b15b770e8050338f78fcb2dabf16
