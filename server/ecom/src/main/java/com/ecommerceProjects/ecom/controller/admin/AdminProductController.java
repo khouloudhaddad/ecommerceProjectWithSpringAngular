@@ -14,19 +14,3 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminProductController {
-    private final ProductService productService;
-    
-    @PostMapping("/product")
-    public ResponseEntity<ProductDto> createProduct(@ModelAttribute ProductDto productDto) throws IOException 
-    {
-        ProductDto productDto1 = productService.createProduct(productDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(productDto1);
-    }
-    
-    @GetMapping("/products")
-    public ResponseEntity<List<ProductDto>> getAllProducts()
-    {
-        List<ProductDto> productDtos = productService.getAllProducts();
-        return ResponseEntity.ok(productDtos);
-    }
-}
